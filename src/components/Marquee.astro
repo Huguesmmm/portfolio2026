@@ -1,0 +1,66 @@
+---
+interface Props {
+  text: string;
+  repetitions?: number;
+}
+
+const { text, repetitions = 3 } = Astro.props;
+const items = Array(repetitions).fill(text);
+---
+
+<div class="poster-credits">
+  <div class="poster-credits-track">
+    {items.map((item) => <span set:html={item} />)}
+  </div>
+  <div class="poster-credits-track" aria-hidden="true">
+    {items.map((item) => <span set:html={item} />)}
+  </div>
+</div>
+
+<style>
+  .poster-credits {
+    --gap: 4rem;
+    position: absolute;
+    bottom: 1vh;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(0.6rem, 0.7vw, 0.7rem);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.8;
+    display: flex;
+    gap: var(--gap);
+  }
+
+  .poster-credits :global(i) {
+    text-transform: lowercase;
+    font-style: normal;
+  }
+
+  .poster-credits-track {
+    flex-shrink: 0;
+    display: flex;
+    gap: var(--gap);
+    animation: scroll 20s linear infinite;
+  }
+
+  .poster-credits-track span {
+    white-space: nowrap;
+  }
+
+  @keyframes scroll {
+    to {
+      transform: translateX(calc(-30% - var(--gap)));
+    }
+  }
+
+  @media (max-width: 480px) {
+    .poster-credits {
+      font-size: 0.5rem;
+      letter-spacing: 0.1em;
+    }
+  }
+</style>

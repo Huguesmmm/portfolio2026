@@ -1,6 +1,30 @@
 {
-  "dependencies": {},
+  "name": "portfolio2026",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Personal portfolio website 2026",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
   "devDependencies": {
     "@biomejs/biome": "2.3.13"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Huguesmmm/portfolio2026.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Huguesmmm/portfolio2026/issues"
+  },
+  "homepage": "https://github.com/Huguesmmm/portfolio2026#readme",
+  "dependencies": {
+    "@astrojs/vue": "^5.1.4",
+    "astro": "^5.17.1",
+    "vue": "^3.5.27"
   }
 }

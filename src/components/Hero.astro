@@ -1,0 +1,148 @@
+---
+import PosterTitle from "./PosterTitle.astro";
+import PosterQuote from "./PosterQuote.astro";
+import Marquee from "./Marquee.astro";
+import FlipDate from "./FlipDate.vue";
+
+interface Props {
+  backgroundImage: string;
+  backgroundAlt?: string;
+}
+
+const { backgroundImage, backgroundAlt = "" } = Astro.props;
+
+const creditsText = `Calle de les Avellanes, Ciutat Vella, Valencia · 2026 · Lumix G85 · 50mm · ISO400 <i>ƒ</i>5.2 1/200s · Shot by Hugues Prud'homme`;
+---
+
+<section class="hero">
+  <div class="hero-bg">
+    <img src={backgroundImage} alt={backgroundAlt} />
+  </div>
+  <div class="hero-content">
+    <!-- TOP: Credits line -->
+    <div class="poster-top">
+      <span class="portfolio-by">a portfolio by</span>
+      <span class="portfolio-author">Hugues Prud'homme</span>
+    </div>
+
+    <!-- MAIN: Title block in lower third -->
+    <div class="poster-main">
+      <PosterTitle />
+      <!-- BOTTOM: Quotes + Date (all bottom-aligned) -->
+      <div class="poster-bottom">
+        <PosterQuote align="left">
+          God is the<br />only reason<br />I made it this far
+        </PosterQuote>
+        <FlipDate client:load easterEgg="18.06.93" />
+        <PosterQuote align="right" attribution="J.R.R. Tolkien">
+          Faithless is he<br />that says farewell<br />when the road darkens
+        </PosterQuote>
+      </div>
+    </div>
+
+    <!-- CREDITS: Separate, at very bottom -->
+    <Marquee text={creditsText} />
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--soft-black);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.9);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1vh 2vw;
+  }
+
+  .poster-top {
+    text-align: center;
+    font-family: "Jost", sans-serif;
+    font-size: clamp(0.8rem, 1vw, 0.9rem);
+    letter-spacing: 0em;
+    text-transform: uppercase;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-top: 2em;
+  }
+
+  .poster-top .portfolio-by {
+    display: block;
+    font-size: clamp(0.7rem, 1vw, 1rem);
+    font-weight: 900;
+    letter-spacing: 0em;
+    opacity: 1;
+  }
+
+  .poster-top .portfolio-author {
+    display: block;
+    font-size: clamp(0.85rem, 1.5vw, 1.5rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    opacity: 0.8;
+  }
+
+  .poster-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 3vh;
+  }
+
+  .poster-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    gap: 2vw;
+  }
+
+  @media (max-width: 768px) {
+    .hero-content {
+      padding: 2vh 3vw;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-content {
+      padding: 2vh 4vw;
+    }
+
+    .poster-main {
+      padding-bottom: 1vh;
+    }
+
+    .poster-bottom {
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+      text-align: center;
+    }
+  }
+</style>

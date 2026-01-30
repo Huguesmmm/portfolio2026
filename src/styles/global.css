@@ -1,0 +1,72 @@
+/* ═══════════════════════════════════════════════════════════════
+   BASE RESET & VARIABLES
+   ═══════════════════════════════════════════════════════════════ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Colors sampled from hero image */
+  --cream: #f5f0e8;
+  --warm-white: #faf8f4;
+  --ochre: #d4a843;
+  --mustard: #c4993d;
+  --terracotta: #b8856c;
+  --slate-blue: #8a9aab;
+  --deep-charcoal: #2a2a2a;
+  --soft-black: #1a1a1a;
+  --warm-gray: #6b6560;
+
+  /* Typography */
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+  --font-display: "Montserrat Alternates", sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-mono: "SF Mono", "Fira Code", "Consolas", monospace;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 6rem;
+
+  /* Transitions */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--soft-black);
+  color: var(--cream);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,80 @@
+---
+interface Props {
+  align?: "left" | "right";
+  attribution?: string;
+}
+
+const { align = "left", attribution } = Astro.props;
+---
+
+<blockquote class:list={["poster-quote", `poster-quote--${align}`]}>
+  <span class="quote-text">
+    <slot />
+  </span>
+  {attribution && <span class="quote-attr">— {attribution}</span>}
+</blockquote>
+
+<style>
+  .poster-quote {
+    font-family: "Jost", sans-serif;
+    font-style: normal;
+    font-size: clamp(0.75rem, 1.5vw, 1.5rem);
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.85;
+    line-height: 1.05;
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    margin-bottom: 0.7em;
+  }
+
+  .poster-quote--left {
+    text-align: left;
+  }
+
+  .poster-quote--right {
+    text-align: right;
+  }
+
+  .quote-text {
+    display: block;
+  }
+
+  .quote-attr {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-style: normal;
+    font-size: 0.6em;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-top: 0.3em;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 768px) {
+    .poster-quote {
+      margin-bottom: 0em;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .poster-quote {
+      margin-bottom: 0em;
+      font-size: 0.75rem;
+    }
+
+    .poster-quote--left,
+    .poster-quote--right {
+      text-align: center;
+    }
+
+    .quote-attr {
+      position: static;
+      margin-top: 0.5em;
+    }
+  }
+</style>
