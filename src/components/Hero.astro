@@ -1,5 +1,5 @@
 ---
-import PosterTitle from "./PosterTitle.astro";
+import PosterTitleAnimated from "./PosterTitleAnimated.vue";
 import PosterQuote from "./PosterQuote.astro";
 import Marquee from "./Marquee.astro";
 import FlipDate from "./FlipDate.vue";
@@ -27,7 +27,7 @@ const creditsText = `Calle de les Avellanes, Ciutat Vella, Valencia · 2026 · L
 
     <!-- MAIN: Title block in lower third -->
     <div class="poster-main">
-      <PosterTitle />
+      <PosterTitleAnimated client:load />
       <!-- BOTTOM: Quotes + Date (all bottom-aligned) -->
       <div class="poster-bottom">
         <PosterQuote align="left">
