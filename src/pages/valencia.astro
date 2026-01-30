@@ -1,0 +1,772 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const base = import.meta.env.BASE_URL;
+
+const photos = [
+  {
+    src: `${base}/Assets/Photos/valencia/P1040804.jpg`,
+    alt: "Narrow Valencia alley at golden hour with Mercado Central tower glowing in the distance",
+    caption: "El Carmen, Valencia · 2024 · Lumix G85",
+    size: "hero",
+  },
+  {
+    src: `${base}/Assets/Photos/valencia/P1040802.jpg`,
+    alt: "Ornate flatiron building rising against winter sky in Valencia",
+    caption: "Plaza del Ayuntamiento · Winter 2024",
+    size: "medium",
+  },
+  {
+    src: `${base}/Assets/Photos/valencia/P1040798.jpg`,
+    alt: "Grand plaza intersection with classic Valencian architecture and zebra crossing",
+    caption: "Plaza del Ayuntamiento · 2024",
+    size: "medium",
+  },
+  {
+    src: `${base}/Assets/Photos/valencia/P1040793.jpg`,
+    alt: "Pedestrians walking past El Corte Inglés on Calle Colón",
+    caption: "Calle Colón · 35mm equiv.",
+    size: "small",
+  },
+  {
+    src: `${base}/Assets/Photos/valencia/P1040818.jpg`,
+    alt: "Looking up between cream and ochre buildings in El Carmen",
+    caption: "El Carmen · 2024",
+    size: "small",
+  },
+  {
+    src: `${base}/Assets/Photos/valencia/P1040796.jpg`,
+    alt: "Central Valencia street with vanishing point perspective and pedestrians",
+    caption: "Centro Histórico · Winter 2024 · Lumix G85",
+    size: "wide",
+  },
+  {
+    src: `${base}/Assets/Photos/valencia/P1040794.jpg`,
+    alt: "Elegant corner building with iron balconies and palm trees at sunset",
+    caption: "Plaza de la Reina · 2024",
+    size: "medium",
+  },
+  {
+    src: `${base}/Assets/Photos/valencia/P1040800.jpg`,
+    alt: "Street corner with cafe terrace and classic European architecture",
+    caption: "Ciutat Vella · Winter 2024",
+    size: "small",
+  },
+  {
+    src: `${base}/Assets/Photos/valencia/P1040819.jpg`,
+    alt: "Winter trees and pedestrians on a cobbled Valencia street",
+    caption: "Barrio del Carmen · 2024 · Lumix G85",
+    size: "medium",
+  },
+];
+---
+
+<BaseLayout title="Valencia Streets | Portfolio">
+  <main>
+    <section class="gallery-section" id="photography">
+      <div class="section-header">
+        <div class="section-titles">
+          <span class="section-eyebrow">Film Exhibition</span>
+          <h2 class="section-title">
+            <span class="title-main">Valencia</span>
+            <span class="title-sub">Winter 2024 · Lumix G85</span>
+          </h2>
+        </div>
+      </div>
+
+      <div class="gallery-divider">
+        <span class="divider-line"></span>
+        <span class="divider-line"></span>
+      </div>
+
+      <div class="gallery-grid">
+        {
+          photos.map((photo) => (
+            <figure class={`gallery-item gallery-item--${photo.size}`}>
+              <div class="gallery-frame">
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  loading="lazy"
+                  class="gallery-image"
+                  data-full={photo.src}
+                />
+                <figcaption class="gallery-caption">{photo.caption}</figcaption>
+              </div>
+            </figure>
+          ))
+        }
+      </div>
+
+      <div class="gallery-footer">
+        <span class="footer-line"></span>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div
+    class="lightbox"
+    id="lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Image viewer"
+  >
+    <button class="lightbox-close" aria-label="Close lightbox">
+      <span class="close-icon"></span>
+    </button>
+    <button class="lightbox-nav lightbox-nav--prev" aria-label="Previous image">
+      <span class="nav-arrow"></span>
+    </button>
+    <button class="lightbox-nav lightbox-nav--next" aria-label="Next image">
+      <span class="nav-arrow"></span>
+    </button>
+    <figure class="lightbox-content">
+      <img src="" alt="" class="lightbox-image" />
+      <figcaption class="lightbox-caption"></figcaption>
+    </figure>
+  </div>
+</BaseLayout>
+
+<style>
+  /* ==========================================================================
+     Gallery Section - Japanese Film Exhibition Aesthetic
+     ========================================================================== */
+
+  /* --------------------------------------------------------------------------
+     CSS Custom Properties (Gallery-specific)
+     -------------------------------------------------------------------------- */
+  :root {
+    --bg-dark: #1a1a1a;
+    --bg-card: #242424;
+    --film-white: #f8f6f2;
+    --film-cream: #e8e4dc;
+    --text-primary: #d4d0c8;
+    --text-secondary: #8a8578;
+    --accent-cool: #7a9a9a;
+    --accent-film: #a89080;
+  }
+
+  /* --------------------------------------------------------------------------
+     Gallery Section Container
+     -------------------------------------------------------------------------- */
+  .gallery-section {
+    padding: var(--space-xl) var(--space-md);
+    min-height: 100vh;
+    background: var(--bg-dark);
+  }
+
+  /* --------------------------------------------------------------------------
+     Section Header
+     -------------------------------------------------------------------------- */
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-lg);
+    text-align: center;
+  }
+
+  .section-titles {
+    max-width: 600px;
+  }
+
+  .section-eyebrow {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xs);
+  }
+
+  .section-title {
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .title-main {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--film-cream);
+    text-transform: uppercase;
+  }
+
+  .title-sub {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    color: var(--text-secondary);
+    margin-top: var(--space-xs);
+  }
+
+  /* --------------------------------------------------------------------------
+     Divider
+     -------------------------------------------------------------------------- */
+  .gallery-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+  }
+
+  .divider-line {
+    flex: 1;
+    max-width: 120px;
+    height: 1px;
+    background: var(--text-secondary);
+    opacity: 0.3;
+  }
+
+  /* --------------------------------------------------------------------------
+     Gallery Grid
+     -------------------------------------------------------------------------- */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-lg);
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .gallery-item--hero {
+    grid-column: span 8;
+  }
+
+  .gallery-item--wide {
+    grid-column: span 8;
+  }
+
+  .gallery-item--medium {
+    grid-column: span 6;
+  }
+
+  .gallery-item--small {
+    grid-column: span 4;
+  }
+
+  .gallery-item {
+    margin: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     Gallery Frames - Polaroid Styling
+     -------------------------------------------------------------------------- */
+  .gallery-frame {
+    position: relative;
+    background: var(--film-white);
+    padding: 12px 12px 60px 12px;
+    cursor: pointer;
+    box-shadow:
+      0 4px 20px rgba(0, 0, 0, 0.4),
+      0 8px 40px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .gallery-frame:hover {
+    box-shadow:
+      0 6px 30px rgba(0, 0, 0, 0.5),
+      0 12px 50px rgba(0, 0, 0, 0.3);
+  }
+
+  .gallery-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .gallery-caption {
+    position: absolute;
+    bottom: 12px;
+    left: 16px;
+    right: 16px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+  }
+
+  /* --------------------------------------------------------------------------
+     Gallery Footer
+     -------------------------------------------------------------------------- */
+  .gallery-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+  }
+
+  .footer-line {
+    width: 60px;
+    height: 1px;
+    background: var(--text-secondary);
+    opacity: 0.3;
+  }
+
+  /* --------------------------------------------------------------------------
+     Lightbox
+     -------------------------------------------------------------------------- */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(10, 10, 10, 0.97);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-lg);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.4s var(--ease-out-expo),
+      visibility 0.4s;
+  }
+
+  .lightbox.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    width: 48px;
+    height: 48px;
+    background: var(--bg-card);
+    border: 1px solid var(--text-secondary);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      background 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  .lightbox-close:hover {
+    background: var(--accent-cool);
+    border-color: var(--accent-cool);
+  }
+
+  .close-icon {
+    position: relative;
+    width: 20px;
+    height: 20px;
+  }
+
+  .close-icon::before,
+  .close-icon::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--film-cream);
+  }
+
+  .close-icon::before {
+    transform: rotate(45deg);
+  }
+
+  .close-icon::after {
+    transform: rotate(-45deg);
+  }
+
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    background: var(--bg-card);
+    border: 1px solid var(--text-secondary);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      background 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  .lightbox-nav:hover {
+    background: var(--accent-cool);
+    border-color: var(--accent-cool);
+  }
+
+  .lightbox-nav--prev {
+    left: var(--space-md);
+  }
+
+  .lightbox-nav--next {
+    right: var(--space-md);
+  }
+
+  .nav-arrow {
+    width: 10px;
+    height: 10px;
+    border-top: 1px solid var(--film-cream);
+    border-right: 1px solid var(--film-cream);
+  }
+
+  .lightbox-nav--prev .nav-arrow {
+    transform: rotate(-135deg);
+    margin-left: 4px;
+  }
+
+  .lightbox-nav--next .nav-arrow {
+    transform: rotate(45deg);
+    margin-right: 4px;
+  }
+
+  .lightbox-content {
+    margin: 0;
+    max-width: 90vw;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lightbox-image {
+    max-width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transform: scale(0.95);
+    opacity: 0;
+    transition:
+      transform 0.4s var(--ease-out-expo),
+      opacity 0.4s var(--ease-out-expo);
+  }
+
+  .lightbox.is-open .lightbox-image {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .lightbox-caption {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: var(--space-md);
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  /* --------------------------------------------------------------------------
+     Responsive Design
+     -------------------------------------------------------------------------- */
+  @media (max-width: 1024px) {
+    .gallery-item--hero,
+    .gallery-item--wide {
+      grid-column: span 12;
+    }
+
+    .gallery-item--medium {
+      grid-column: span 6;
+    }
+
+    .gallery-item--small {
+      grid-column: span 6;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .gallery-section {
+      padding: var(--space-lg) var(--space-sm);
+    }
+
+    .gallery-grid {
+      gap: var(--space-md);
+    }
+
+    .gallery-item--hero,
+    .gallery-item--wide,
+    .gallery-item--medium,
+    .gallery-item--small {
+      grid-column: span 12;
+    }
+
+    .gallery-frame {
+      padding: 8px 8px 50px 8px;
+    }
+
+    .gallery-caption {
+      bottom: 10px;
+      left: 12px;
+      right: 12px;
+      font-size: 0.65rem;
+    }
+
+    .lightbox-nav {
+      width: 44px;
+      height: 44px;
+    }
+
+    .lightbox-nav--prev {
+      left: var(--space-xs);
+    }
+
+    .lightbox-nav--next {
+      right: var(--space-xs);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .gallery-caption {
+      font-size: 0.6rem;
+    }
+
+    .gallery-frame {
+      padding: 6px 6px 44px 6px;
+    }
+  }
+</style>
+
+<script>
+  /**
+   * Gallery Module - Lightbox and lazy loading
+   */
+  (function () {
+    "use strict";
+
+    const state = {
+      lightboxOpen: false,
+      currentIndex: 0,
+      images: [] as {
+        src: string;
+        alt: string;
+        caption: string;
+        index: number;
+      }[],
+    };
+
+    const elements = {
+      lightbox: document.getElementById("lightbox"),
+      lightboxImage: null as HTMLImageElement | null,
+      lightboxCaption: null as HTMLElement | null,
+      closeBtn: null as HTMLButtonElement | null,
+      prevBtn: null as HTMLButtonElement | null,
+      nextBtn: null as HTMLButtonElement | null,
+      galleryItems: null as NodeListOf<Element> | null,
+    };
+
+    function init() {
+      cacheElements();
+      collectImages();
+      bindEvents();
+      initLazyLoading();
+    }
+
+    function cacheElements() {
+      elements.lightboxImage = elements.lightbox?.querySelector(
+        ".lightbox-image"
+      ) as HTMLImageElement;
+      elements.lightboxCaption =
+        elements.lightbox?.querySelector(".lightbox-caption");
+      elements.closeBtn =
+        elements.lightbox?.querySelector(".lightbox-close");
+      elements.prevBtn =
+        elements.lightbox?.querySelector(".lightbox-nav--prev");
+      elements.nextBtn =
+        elements.lightbox?.querySelector(".lightbox-nav--next");
+      elements.galleryItems = document.querySelectorAll(".gallery-item");
+    }
+
+    function collectImages() {
+      const images = document.querySelectorAll(".gallery-image");
+      state.images = Array.from(images).map((img, index) => ({
+        src:
+          (img as HTMLImageElement).dataset.full ||
+          (img as HTMLImageElement).src,
+        alt: (img as HTMLImageElement).alt,
+        caption:
+          img
+            .closest(".gallery-frame")
+            ?.querySelector(".gallery-caption")?.textContent || "",
+        index,
+      }));
+    }
+
+    function bindEvents() {
+      document.querySelectorAll(".gallery-frame").forEach((frame, index) => {
+        frame.addEventListener("click", () => openLightbox(index));
+      });
+
+      elements.closeBtn?.addEventListener("click", closeLightbox);
+      elements.prevBtn?.addEventListener("click", showPrevious);
+      elements.nextBtn?.addEventListener("click", showNext);
+
+      elements.lightbox?.addEventListener("click", (e) => {
+        if (e.target === elements.lightbox) {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener("keydown", handleKeydown);
+    }
+
+    function handleKeydown(e: KeyboardEvent) {
+      if (!state.lightboxOpen) return;
+
+      switch (e.key) {
+        case "Escape":
+          closeLightbox();
+          break;
+        case "ArrowLeft":
+          showPrevious();
+          break;
+        case "ArrowRight":
+          showNext();
+          break;
+      }
+    }
+
+    function openLightbox(index: number) {
+      state.currentIndex = index;
+      state.lightboxOpen = true;
+      updateLightboxContent();
+      elements.lightbox?.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+      elements.closeBtn?.focus();
+    }
+
+    function closeLightbox() {
+      state.lightboxOpen = false;
+      elements.lightbox?.classList.remove("is-open");
+      document.body.style.overflow = "";
+
+      const frame = elements.galleryItems?.[state.currentIndex]?.querySelector(
+        ".gallery-frame"
+      ) as HTMLElement;
+      frame?.focus();
+    }
+
+    function showPrevious() {
+      state.currentIndex =
+        (state.currentIndex - 1 + state.images.length) % state.images.length;
+      updateLightboxContent();
+    }
+
+    function showNext() {
+      state.currentIndex = (state.currentIndex + 1) % state.images.length;
+      updateLightboxContent();
+    }
+
+    function updateLightboxContent() {
+      const image = state.images[state.currentIndex];
+      if (!image || !elements.lightboxImage) return;
+
+      elements.lightboxImage.style.opacity = "0";
+      elements.lightboxImage.style.transform = "scale(0.95)";
+
+      setTimeout(() => {
+        if (!elements.lightboxImage) return;
+        elements.lightboxImage.src = image.src;
+        elements.lightboxImage.alt = image.alt;
+        if (elements.lightboxCaption) {
+          elements.lightboxCaption.textContent = image.caption;
+        }
+
+        elements.lightboxImage.onload = () => {
+          if (!elements.lightboxImage) return;
+          elements.lightboxImage.style.opacity = "1";
+          elements.lightboxImage.style.transform = "scale(1)";
+        };
+      }, 150);
+    }
+
+    function initLazyLoading() {
+      if ("loading" in HTMLImageElement.prototype) {
+        document.querySelectorAll(".gallery-frame").forEach((frame, index) => {
+          frame.addEventListener("mouseenter", () => {
+            preloadAdjacent(index);
+          });
+        });
+      } else {
+        const images = document.querySelectorAll(
+          '.gallery-image[loading="lazy"]'
+        );
+        const lazyObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const img = entry.target as HTMLImageElement;
+              img.src = img.dataset.src || img.src;
+              lazyObserver.unobserve(img);
+            }
+          });
+        });
+
+        images.forEach((img) => lazyObserver.observe(img));
+      }
+    }
+
+    function preloadAdjacent(currentIndex: number) {
+      const prevIndex =
+        (currentIndex - 1 + state.images.length) % state.images.length;
+      const nextIndex = (currentIndex + 1) % state.images.length;
+
+      [prevIndex, nextIndex].forEach((idx) => {
+        const imgData = state.images[idx];
+        if (imgData && imgData.src) {
+          const preloadImg = new Image();
+          preloadImg.src = imgData.src;
+        }
+      });
+    }
+
+    // Touch/Swipe Support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    elements.lightbox?.addEventListener(
+      "touchstart",
+      (e) => {
+        touchStartX = (e as TouchEvent).changedTouches[0].screenX;
+      },
+      { passive: true }
+    );
+
+    elements.lightbox?.addEventListener(
+      "touchend",
+      (e) => {
+        touchEndX = (e as TouchEvent).changedTouches[0].screenX;
+        handleSwipe();
+      },
+      { passive: true }
+    );
+
+    function handleSwipe() {
+      if (!state.lightboxOpen) return;
+
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          showNext();
+        } else {
+          showPrevious();
+        }
+      }
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      init();
+    }
+  })();
+</script>

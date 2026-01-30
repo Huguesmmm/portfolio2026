@@ -1,0 +1,76 @@
+---
+interface Props {
+  title?: string;
+  tagline?: string;
+}
+
+const { title = "CODE", tagline = "& wandering thoughts" } = Astro.props;
+---
+
+<div class="poster-title-wrapper">
+  <h1 class="poster-title">{title}</h1>
+  <span class="poster-tagline">{tagline}</span>
+</div>
+
+<style>
+  .poster-title-wrapper {
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+
+  .poster-title {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 700;
+    font-size: clamp(20vw, 24vw, 27rem);
+    line-height: 0.87;
+    letter-spacing: 0em;
+    color: var(--warm-white);
+    display: block;
+  }
+
+  .poster-tagline {
+    position: absolute;
+    bottom: -0.65em;
+    right: 2.2em;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-weight: 900;
+    font-size: clamp(0.9rem, 2.6vw, 2.6rem);
+    color: var(--ochre);
+    letter-spacing: 0.02em;
+    transform: rotate(-9deg);
+  }
+
+  @media (max-width: 768px) {
+    .poster-title {
+      line-height: 1.1;
+    }
+
+    .poster-tagline {
+      right: 1.7em;
+      bottom: 0.2em;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .poster-title-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .poster-title {
+      font-size: 32vw;
+      line-height: 1;
+    }
+
+    .poster-tagline {
+      position: absolute;
+      font-size: 1.2rem;
+      right: 0.5em;
+      bottom: -0.2em;
+      transform: rotate(0deg);
+    }
+  }
+</style>
