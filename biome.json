@@ -1,0 +1,14 @@
+{
+  "$schema": "https://biomejs.dev/schemas/latest/schema.json",
+  "formatter": {
+    "enabled": false,
+    "bracketSameLine": true
+  },
+  "html": {
+    "formatter": {
+      "enabled": true,
+      "bracketSameLine": true,
+      "lineWidth": 120
+    }
+  }
+}
