@@ -205,6 +205,7 @@
         opacity: 0.9;
         line-height: 0.9;
         flex-shrink: 0;
+        cursor: default;
       }
 
       .poster-quote {
@@ -404,5 +405,26 @@
         </div>
       </div>
     </section>
+
+    <script>
+      const dateEl = document.querySelector('.poster-date');
+      const easterEgg = '18.06.93';
+      const today = new Date();
+      const currentDate = today.toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: '2-digit',
+        year: '2-digit'
+      }).replace(/\//g, '.');
+
+      dateEl.textContent = currentDate;
+
+      dateEl.addEventListener('mouseenter', () => {
+        dateEl.textContent = easterEgg;
+      });
+
+      dateEl.addEventListener('mouseleave', () => {
+        dateEl.textContent = currentDate;
+      });
+    </script>
   </body>
 </html>
