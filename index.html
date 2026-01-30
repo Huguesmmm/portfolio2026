@@ -1,177 +1,408 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Valencia Streets | Portfolio</title>
-  <link rel="stylesheet" href="css/gallery.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <main>
-    <!-- Gallery Section -->
-    <section class="gallery-section" id="photography">
-      <div class="section-header">
-        <div class="section-titles">
-          <span class="section-eyebrow">Film Exhibition</span>
-          <h2 class="section-title">
-            <span class="title-main">Valencia</span>
-            <span class="title-sub">Winter 2024 · Lumix G85</span>
-          </h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hero | Portfolio 2026</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat+Alternates:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ═══════════════════════════════════════════════════════════════
+         FONTS
+         ═══════════════════════════════════════════════════════════════ */
+
+      @font-face {
+        font-family: "Futura Extra Bold";
+        src: url("Futura Extra Bold.otf") format("opentype");
+        font-weight: 800;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      /* ═══════════════════════════════════════════════════════════════
+         BASE RESET & VARIABLES
+         ═══════════════════════════════════════════════════════════════ */
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        /* Colors sampled from hero image */
+        --cream: #f5f0e8;
+        --warm-white: #faf8f4;
+        --ochre: #d4a843;
+        --mustard: #c4993d;
+        --terracotta: #b8856c;
+        --slate-blue: #8a9aab;
+        --deep-charcoal: #2a2a2a;
+        --soft-black: #1a1a1a;
+        --warm-gray: #6b6560;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        background: var(--soft-black);
+        color: var(--cream);
+        line-height: 1.5;
+      }
+
+      /* ═══════════════════════════════════════════════════════════════
+         HERO — DUNE POSTER STYLE
+         ═══════════════════════════════════════════════════════════════ */
+
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: var(--soft-black);
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+
+      .hero-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.9);
+      }
+
+      .hero-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        /* Vignette and side darkening disabled
+        background:
+          radial-gradient(ellipse 100% 100% at 50% 50%, transparent 30%, rgba(0,0,0,0.6) 100%),
+          linear-gradient(to right, rgba(26,26,26,0.4), transparent 20%, transparent 80%, rgba(26,26,26,0.4));
+        */
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        padding: 1vh 2vw;
+      }
+
+      /* ─────────────────────────────────────────────────────────────────
+         TOP: "a portfolio by Hugues Prud'homme" centered
+         ───────────────────────────────────────────────────────────────── */
+
+      .poster-top {
+        text-align: center;
+        font-family: "Jost", sans-serif;
+        font-size: clamp(0.8rem, 1vw, 0.9rem);
+        letter-spacing: 0em;
+        text-transform: uppercase;
+        color: var(--cream);
+        line-height: 1.2;
+        margin-top: 2em;
+      }
+
+      .poster-top .portfolio-by {
+        display: block;
+        font-size: clamp(0.7rem, 1vw, 1rem);
+        font-weight: 900;
+        letter-spacing: 0em;
+        opacity: 1;
+      }
+
+      .poster-top .portfolio-author {
+        display: block;
+        font-size: clamp(0.85rem, 1.5vw, 1.5rem);
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        opacity: 0.8;
+      }
+
+      /* ─────────────────────────────────────────────────────────────────
+         CENTER/LOWER THIRD: CODE + date + tagline
+         ───────────────────────────────────────────────────────────────── */
+
+      .poster-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        padding-bottom: 3vh;
+      }
+
+      .poster-title-wrapper {
+        position: relative;
+        text-align: center;
+        width: 100%;
+      }
+
+      .poster-title {
+        font-family: "Montserrat Alternates", sans-serif;
+        font-weight: 700;
+        font-size: clamp(20vw, 24vw, 27rem);
+        line-height: 0.87;
+        letter-spacing: 0em;
+        color: var(--warm-white);
+        display: block;
+      }
+
+      .poster-tagline {
+        /* Position relative to title-wrapper - adjust these values manually */
+        position: absolute;
+        bottom: -0.65em;
+        right: 2.2em;
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-weight: 900;
+        font-size: clamp(0.9rem, 2.6vw, 2.6rem);
+        color: var(--ochre);
+        letter-spacing: 0.02em;
+        transform: rotate(-9deg);
+      }
+
+      /* ─────────────────────────────────────────────────────────────────
+         BOTTOM: Quotes left/right + date center (bottoms aligned)
+         ───────────────────────────────────────────────────────────────── */
+
+      .poster-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        width: 100%;
+        gap: 2vw;
+      }
+
+      .poster-date {
+        font-family: "Montserrat Alternates", sans-serif;
+        font-size: clamp(4rem, 9vw, 9rem);
+        letter-spacing: -0.05em;
+        font-weight: 800;
+        color: var(--cream);
+        opacity: 0.9;
+        line-height: 0.9;
+        flex-shrink: 0;
+      }
+
+      .poster-quote {
+        font-family: "Jost", sans-serif;
+        font-style: normal;
+        font-size: clamp(0.75rem, 1.5vw, 1.5rem);
+        text-transform: uppercase;
+        color: var(--cream);
+        opacity: 0.85;
+        line-height: 1.05;
+        flex: 1;
+        min-width: 0;
+        position: relative;
+      }
+
+      .poster-quote--left {
+        text-align: left;
+      }
+
+      .poster-quote--right {
+        text-align: right;
+      }
+
+      .poster-quote .quote-text {
+        display: block;
+      }
+
+      blockquote {
+        margin-bottom: 0.7em;
+      }
+
+      .poster-quote .quote-attr {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        font-family: "Space Grotesk", sans-serif;
+        font-style: normal;
+        font-size: 0.6em;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        opacity: 0.8;
+        margin-top: 0.3em;
+        white-space: nowrap;
+      }
+
+      /* ─────────────────────────────────────────────────────────────────
+         CREDITS: Fixed at 1vh from bottom
+         ───────────────────────────────────────────────────────────────── */
+
+      .poster-credits {
+        position: absolute;
+        bottom: 1vh;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(0.6rem, 0.7vw, 0.7rem);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--cream);
+        opacity: 0.8;
+        white-space: nowrap;
+      }
+
+      /* ═══════════════════════════════════════════════════════════════
+         RESPONSIVE ADJUSTMENTS
+         ═══════════════════════════════════════════════════════════════ */
+      @media (max-width: 768px) {
+        .hero-content {
+          padding: 2vh 3vw;
+        }
+
+        .poster-title {
+          line-height: 1.1;
+        }
+
+        .poster-tagline {
+          right: 1.7em;
+          bottom: 0.2em;
+        }
+
+        blockquote {
+          margin-bottom: 0em;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-content {
+          padding: 2vh 4vw;
+        }
+
+        .poster-title-wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .poster-title {
+          font-size: 32vw;
+          line-height: 1;
+        }
+
+        .poster-tagline {
+          position: absolute;
+          font-size: 1.2rem;
+          right: 0.5em;
+          bottom: -0.2em;
+          transform: rotate(0deg);
+        }
+
+        .poster-main {
+          padding-bottom: 1vh;
+        }
+
+        .poster-bottom {
+          flex-direction: column;
+          gap: 1.5rem;
+          align-items: center;
+          text-align: center;
+        }
+
+        .poster-date {
+          order: -1;
+        }
+
+        blockquote {
+          margin-bottom: 0em;
+        }
+
+        .poster-quote--left,
+        .poster-quote--right {
+          text-align: center;
+        }
+
+        .poster-quote .quote-attr {
+          position: static;
+          margin-top: 0.5em;
+        }
+
+        .poster-quote {
+          font-size: 0.75rem;
+        }
+
+        .poster-credits {
+          font-size: 0.5rem;
+          letter-spacing: 0.1em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ═══════════════════════════════════════════════════════════════
+       HERO — DUNE POSTER STYLE
+       ═══════════════════════════════════════════════════════════════ -->
+    <section class="hero">
+      <div class="hero-bg">
+        <img
+          src="Assets/Photos/hero_page_pic.jpeg"
+          alt="Valencia street architecture"
+        />
+      </div>
+      <div class="hero-content">
+        <!-- TOP: Credits line -->
+        <div class="poster-top">
+          <span class="portfolio-by">a portfolio by</span>
+          <span class="portfolio-author">Hugues Prud'homme</span>
+        </div>
+
+        <!-- MAIN: Title block in lower third -->
+
+        <div class="poster-main">
+          <div class="poster-title-wrapper">
+            <h1 class="poster-title">CODE</h1>
+            <span class="poster-tagline">& wandering thoughts</span>
+          </div>
+          <!-- BOTTOM: Quotes + Date (all bottom-aligned) -->
+          <div class="poster-bottom">
+            <blockquote class="poster-quote poster-quote--left">
+              <span class="quote-text"
+                >God is the<br />only reason<br />I made it this far</span
+              >
+            </blockquote>
+            <div class="poster-date">18.06.93</div>
+            <blockquote class="poster-quote poster-quote--right">
+              <span class="quote-text"
+                >Faithless is he<br />that says farewell<br />when the road
+                darkens</span
+              >
+              <span class="quote-attr">— J.R.R. Tolkien</span>
+            </blockquote>
+          </div>
+        </div>
+
+        <!-- CREDITS: Separate, at very bottom -->
+        <div class="poster-credits">
+          El Carmen, Valencia · 2026 · Lumix G85 · Taken by Hugues Prud'homme
         </div>
       </div>
-
-      <div class="gallery-divider">
-        <span class="divider-line"></span>
-        <span class="divider-line"></span>
-      </div>
-
-      <div class="gallery-grid">
-        <!-- Large hero shot -->
-        <figure class="gallery-item gallery-item--hero">
-          <div class="gallery-frame">
-            <img
-              src="Assets/Photos/valencia/P1040804.jpg"
-              alt="Narrow Valencia alley at golden hour with Mercado Central tower glowing in the distance"
-              loading="lazy"
-              class="gallery-image"
-              data-full="Assets/Photos/valencia/P1040804.jpg"
-            >
-            <figcaption class="gallery-caption">El Carmen, Valencia · 2024 · Lumix G85</figcaption>
-          </div>
-        </figure>
-
-        <!-- Medium shots cluster -->
-        <figure class="gallery-item gallery-item--medium">
-          <div class="gallery-frame">
-            <img
-              src="Assets/Photos/valencia/P1040802.jpg"
-              alt="Ornate flatiron building rising against winter sky in Valencia"
-              loading="lazy"
-              class="gallery-image"
-              data-full="Assets/Photos/valencia/P1040802.jpg"
-            >
-            <figcaption class="gallery-caption">Plaza del Ayuntamiento · Winter 2024</figcaption>
-          </div>
-        </figure>
-
-        <figure class="gallery-item gallery-item--medium">
-          <div class="gallery-frame">
-            <img
-              src="Assets/Photos/valencia/P1040798.jpg"
-              alt="Grand plaza intersection with classic Valencian architecture and zebra crossing"
-              loading="lazy"
-              class="gallery-image"
-              data-full="Assets/Photos/valencia/P1040798.jpg"
-            >
-            <figcaption class="gallery-caption">Plaza del Ayuntamiento · 2024</figcaption>
-          </div>
-        </figure>
-
-        <figure class="gallery-item gallery-item--small">
-          <div class="gallery-frame">
-            <img
-              src="Assets/Photos/valencia/P1040793.jpg"
-              alt="Pedestrians walking past El Corte Inglés on Calle Colón"
-              loading="lazy"
-              class="gallery-image"
-              data-full="Assets/Photos/valencia/P1040793.jpg"
-            >
-            <figcaption class="gallery-caption">Calle Colón · 35mm equiv.</figcaption>
-          </div>
-        </figure>
-
-        <figure class="gallery-item gallery-item--small">
-          <div class="gallery-frame">
-            <img
-              src="Assets/Photos/valencia/P1040818.jpg"
-              alt="Looking up between cream and ochre buildings in El Carmen"
-              loading="lazy"
-              class="gallery-image"
-              data-full="Assets/Photos/valencia/P1040818.jpg"
-            >
-            <figcaption class="gallery-caption">El Carmen · 2024</figcaption>
-          </div>
-        </figure>
-
-        <figure class="gallery-item gallery-item--wide">
-          <div class="gallery-frame">
-            <img
-              src="Assets/Photos/valencia/P1040796.jpg"
-              alt="Central Valencia street with vanishing point perspective and pedestrians"
-              loading="lazy"
-              class="gallery-image"
-              data-full="Assets/Photos/valencia/P1040796.jpg"
-            >
-            <figcaption class="gallery-caption">Centro Histórico · Winter 2024 · Lumix G85</figcaption>
-          </div>
-        </figure>
-
-        <figure class="gallery-item gallery-item--medium">
-          <div class="gallery-frame">
-            <img
-              src="Assets/Photos/valencia/P1040794.jpg"
-              alt="Elegant corner building with iron balconies and palm trees at sunset"
-              loading="lazy"
-              class="gallery-image"
-              data-full="Assets/Photos/valencia/P1040794.jpg"
-            >
-            <figcaption class="gallery-caption">Plaza de la Reina · 2024</figcaption>
-          </div>
-        </figure>
-
-        <figure class="gallery-item gallery-item--small">
-          <div class="gallery-frame">
-            <img
-              src="Assets/Photos/valencia/P1040800.jpg"
-              alt="Street corner with cafe terrace and classic European architecture"
-              loading="lazy"
-              class="gallery-image"
-              data-full="Assets/Photos/valencia/P1040800.jpg"
-            >
-            <figcaption class="gallery-caption">Ciutat Vella · Winter 2024</figcaption>
-          </div>
-        </figure>
-
-        <figure class="gallery-item gallery-item--medium">
-          <div class="gallery-frame">
-            <img
-              src="Assets/Photos/valencia/P1040819.jpg"
-              alt="Winter trees and pedestrians on a cobbled Valencia street"
-              loading="lazy"
-              class="gallery-image"
-              data-full="Assets/Photos/valencia/P1040819.jpg"
-            >
-            <figcaption class="gallery-caption">Barrio del Carmen · 2024 · Lumix G85</figcaption>
-          </div>
-        </figure>
-      </div>
-
-      <div class="gallery-footer">
-        <span class="footer-line"></span>
-      </div>
     </section>
-  </main>
-
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
-    <button class="lightbox-close" aria-label="Close lightbox">
-      <span class="close-icon"></span>
-    </button>
-    <button class="lightbox-nav lightbox-nav--prev" aria-label="Previous image">
-      <span class="nav-arrow"></span>
-    </button>
-    <button class="lightbox-nav lightbox-nav--next" aria-label="Next image">
-      <span class="nav-arrow"></span>
-    </button>
-    <figure class="lightbox-content">
-      <img src="" alt="" class="lightbox-image">
-      <figcaption class="lightbox-caption"></figcaption>
-    </figure>
-  </div>
-
-  <script src="js/gallery.js"></script>
-</body>
+  </body>
 </html>
