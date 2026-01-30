@@ -1,0 +1,459 @@
+/* ==========================================================================
+   Gallery Section - Japanese Film Exhibition Aesthetic
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   CSS Custom Properties
+   -------------------------------------------------------------------------- */
+:root {
+  /* Film Exhibition Palette */
+  --bg-dark:        #1a1a1a;      /* Gallery wall - near black */
+  --bg-card:        #242424;      /* Subtle card backgrounds */
+  --film-white:     #f8f6f2;      /* Polaroid border - aged paper */
+  --film-cream:     #e8e4dc;      /* Secondary whites */
+  --text-primary:   #d4d0c8;      /* Muted warm gray */
+  --text-secondary: #8a8578;      /* Annotation text */
+  --accent-cool:    #7a9a9a;      /* Muted teal for subtle accents */
+  --accent-film:    #a89080;      /* Warm film tone */
+
+  /* Typography */
+  --font-sans: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 6rem;
+
+  /* Transitions */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   Base Reset & Typography
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   Gallery Section Container
+   -------------------------------------------------------------------------- */
+.gallery-section {
+  padding: var(--space-xl) var(--space-md);
+  min-height: 100vh;
+  background: var(--bg-dark);
+}
+
+/* --------------------------------------------------------------------------
+   Section Header
+   -------------------------------------------------------------------------- */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+
+.section-titles {
+  max-width: 600px;
+}
+
+.section-eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xs);
+}
+
+.section-title {
+  margin: 0;
+  line-height: 1.2;
+}
+
+.title-main {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: var(--film-cream);
+  text-transform: uppercase;
+}
+
+.title-sub {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  color: var(--text-secondary);
+  margin-top: var(--space-xs);
+}
+
+/* --------------------------------------------------------------------------
+   Divider
+   -------------------------------------------------------------------------- */
+.gallery-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.divider-line {
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: var(--text-secondary);
+  opacity: 0.3;
+}
+
+/* --------------------------------------------------------------------------
+   Gallery Grid
+   -------------------------------------------------------------------------- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-lg);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Grid placement */
+.gallery-item--hero {
+  grid-column: span 8;
+}
+
+.gallery-item--wide {
+  grid-column: span 8;
+}
+
+.gallery-item--medium {
+  grid-column: span 6;
+}
+
+.gallery-item--small {
+  grid-column: span 4;
+}
+
+/* --------------------------------------------------------------------------
+   Gallery Items - Polaroid Style
+   -------------------------------------------------------------------------- */
+.gallery-item {
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Gallery Frames - Polaroid Styling
+   -------------------------------------------------------------------------- */
+.gallery-frame {
+  position: relative;
+  background: var(--film-white);
+  padding: 12px 12px 60px 12px;
+  cursor: pointer;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.4),
+    0 8px 40px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
+}
+
+.gallery-frame:hover {
+  box-shadow:
+    0 6px 30px rgba(0, 0, 0, 0.5),
+    0 12px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   Gallery Images - Natural proportions
+   -------------------------------------------------------------------------- */
+.gallery-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   Gallery Captions - Technical Annotations
+   -------------------------------------------------------------------------- */
+.gallery-caption {
+  position: absolute;
+  bottom: 12px;
+  left: 16px;
+  right: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}
+
+/* --------------------------------------------------------------------------
+   Gallery Footer
+   -------------------------------------------------------------------------- */
+.gallery-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+}
+
+.footer-line {
+  width: 60px;
+  height: 1px;
+  background: var(--text-secondary);
+  opacity: 0.3;
+}
+
+/* --------------------------------------------------------------------------
+   Lightbox - Dark Theme
+   -------------------------------------------------------------------------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(10, 10, 10, 0.97);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s var(--ease-out-expo), visibility 0.4s;
+}
+
+.lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  width: 48px;
+  height: 48px;
+  background: var(--bg-card);
+  border: 1px solid var(--text-secondary);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.lightbox-close:hover {
+  background: var(--accent-cool);
+  border-color: var(--accent-cool);
+}
+
+.close-icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.close-icon::before,
+.close-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--film-cream);
+}
+
+.close-icon::before {
+  transform: rotate(45deg);
+}
+
+.close-icon::after {
+  transform: rotate(-45deg);
+}
+
+/* Navigation buttons */
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  background: var(--bg-card);
+  border: 1px solid var(--text-secondary);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.lightbox-nav:hover {
+  background: var(--accent-cool);
+  border-color: var(--accent-cool);
+}
+
+.lightbox-nav--prev {
+  left: var(--space-md);
+}
+
+.lightbox-nav--next {
+  right: var(--space-md);
+}
+
+.nav-arrow {
+  width: 10px;
+  height: 10px;
+  border-top: 1px solid var(--film-cream);
+  border-right: 1px solid var(--film-cream);
+}
+
+.lightbox-nav--prev .nav-arrow {
+  transform: rotate(-135deg);
+  margin-left: 4px;
+}
+
+.lightbox-nav--next .nav-arrow {
+  transform: rotate(45deg);
+  margin-right: 4px;
+}
+
+/* Lightbox content */
+.lightbox-content {
+  margin: 0;
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lightbox-image {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  transform: scale(0.95);
+  opacity: 0;
+  transition: transform 0.4s var(--ease-out-expo), opacity 0.4s var(--ease-out-expo);
+}
+
+.lightbox.is-open .lightbox-image {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.lightbox-caption {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: var(--space-md);
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Design
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .gallery-item--hero,
+  .gallery-item--wide {
+    grid-column: span 12;
+  }
+
+  .gallery-item--medium {
+    grid-column: span 6;
+  }
+
+  .gallery-item--small {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-section {
+    padding: var(--space-lg) var(--space-sm);
+  }
+
+  .gallery-grid {
+    gap: var(--space-md);
+  }
+
+  .gallery-item--hero,
+  .gallery-item--wide,
+  .gallery-item--medium,
+  .gallery-item--small {
+    grid-column: span 12;
+  }
+
+  .gallery-frame {
+    padding: 8px 8px 50px 8px;
+  }
+
+  .gallery-caption {
+    bottom: 10px;
+    left: 12px;
+    right: 12px;
+    font-size: 0.65rem;
+  }
+
+  .lightbox-nav {
+    width: 44px;
+    height: 44px;
+  }
+
+  .lightbox-nav--prev {
+    left: var(--space-xs);
+  }
+
+  .lightbox-nav--next {
+    right: var(--space-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-caption {
+    font-size: 0.6rem;
+  }
+
+  .gallery-frame {
+    padding: 6px 6px 44px 6px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Reduced Motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
